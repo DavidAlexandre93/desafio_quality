@@ -14,7 +14,19 @@ public class PropertyService {
 
 
     public BigDecimal calculatePropertyValue(PropertyDTO property) {
-        return property.getDistrict().getValueDistrictM2().multiply(BigDecimal.valueOf(10));
+        //return property.getDistrict().getValueDistrictM2().multiply(BigDecimal.valueOf(10));
+
+        BigDecimal result = property
+                .getDistrict()
+                .getValueDistrictM2()
+                .multiply(BigDecimal.valueOf(property
+                        .getRooms()
+                        .stream()
+                        .mapToDouble(x -> x.getArea()).sum()));
+
+
+
+        return result;
     }
 
 }
