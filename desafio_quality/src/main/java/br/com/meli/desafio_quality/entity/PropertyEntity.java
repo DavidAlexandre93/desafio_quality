@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PropertyEntity {
 
+    private Integer id;
     private String propName;
     private DistrictEntity district;
     private List<RoomEntity> rooms;
