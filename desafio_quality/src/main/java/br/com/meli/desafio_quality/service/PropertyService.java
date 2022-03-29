@@ -1,5 +1,8 @@
 package br.com.meli.desafio_quality.service;
 
+import br.com.meli.desafio_quality.dto.PropertyDTO;
+import br.com.meli.desafio_quality.entity.DistrictEntity;
+import br.com.meli.desafio_quality.entity.PropertyEntity;
 import br.com.meli.desafio_quality.entity.RoomEntity;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
 
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 @Service
 public class PropertyService {
@@ -14,6 +18,15 @@ public class PropertyService {
 
     public PropertyService(PropertyRepository propertyRepository) {
         this.propertyRepository = propertyRepository;
+    }
+
+    public PropertyEntity addProperty(PropertyDTO input) {
+        PropertyEntity property = new PropertyEntity(input.getPropName(),
+                new DistrictEntity(input.getDistrict().getPropDistrict(), input.getDistrict().getValueDistrictM2()),
+                input.getRooms().stream().map(r -> new RoomEntity(r.getRoomName(), r.getRoomWidth(), r.getRoomLength())).collect(Collectors.toList())
+        );
+        propertyRepository.create(property);
+        return property;
     }
 
     public Double totalPropertyArea(Integer id) {
