@@ -49,7 +49,6 @@ public class PropertyServiceTest {
     @DisplayName("Test - US-0001")
     public void nomeMetodo_shouldCOMPORTOMENT_whenCONDICAO() {
 
-
     }
 
     @Test
