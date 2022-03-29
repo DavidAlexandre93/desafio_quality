@@ -2,6 +2,7 @@ package br.com.meli.desafio_quality.service;
 
 
 import br.com.meli.desafio_quality.entity.DistrictEntity;
+import br.com.meli.desafio_quality.entity.PropertyEntity;
 import br.com.meli.desafio_quality.entity.RoomEntity;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
 
@@ -35,16 +36,17 @@ public class PropertyService {
      * bairro.
      */
     //totalArea * valueDistrictM2
-   public Double calculatePrecoAreaTotal(Double newResult) {
-      DistrictEntity district = new DistrictEntity();
-       try {
-           newResult = Math.multiplyExact(district.getValueDistrictM2(),totalArea);
-           return newResult;
-       } catch (ArithmeticException a) {
-           a.printStackTrace();
-       }
+   public BigDecimal calculatePrecoAreaTotal(Integer id) {
+
+       PropertyEntity property = propertyRepository.findById(id);
+       BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
+
+       return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
+
+       // return newResult = Math.multiplyExact(property.getDistrict().getValueDistrictM2(),proprieArea);
+
        //return district.getValueDistrictM2().multiply(BigDecimal.valueOf(this.totalPropertyArea());
 
-       return newResult;
+
     }
 }

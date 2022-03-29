@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 
+import java.math.BigDecimal;
+
 //@RequestMapping("/seuImovel")
 @RestController
 @NoArgsConstructor
@@ -19,8 +21,8 @@ public class Controller {
 
 
     @GetMapping("/totalpropriedade")
-    public ResponseEntity<Double> analisaValorPropriedade(@RequestParam Double valor) {
-        return ResponseEntity.ok(propertyService.calculatePrecoAreaTotal());
+    public ResponseEntity<BigDecimal> precototalPropriedade(@RequestParam Integer id) {
+        return ResponseEntity.ok(propertyService.calculatePrecoAreaTotal(id));
     }
 
 }
