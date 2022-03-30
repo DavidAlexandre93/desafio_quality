@@ -72,4 +72,11 @@ public class PropertyServiceTest {
         Mockito.when(propertyRepository.findById(1)).thenReturn(propertyHouse);
         assert(propertyService.biggestRoom(1)).getRoomName().equals("Kitchen");
     }
+
+    @Test
+    @DisplayName("Test02 - US-0003")
+    public void biggestRoom_shouldBiggestRoom_whenInvalidId() {
+        Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
+        assertThrows(ResponseStatusException.class, () -> propertyService.biggestRoom(2));
+    }
 }
