@@ -25,7 +25,5 @@ public class PropertyEndPointTest {
        mvc.perform(MockMvcRequestBuilders.post("/teste").contentType(MediaType.APPLICATION_JSON)
                .content("")
        ).andExpect(MockMvcResultMatchers.status().isCreated());
-
-
     }
 }
