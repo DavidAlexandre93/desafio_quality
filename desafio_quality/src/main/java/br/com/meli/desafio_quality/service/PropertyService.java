@@ -35,18 +35,11 @@ public class PropertyService {
      * Lembre-se que os preços por metro quadrado são determinados em função do
      * bairro.
      */
-    //totalArea * valueDistrictM2
    public BigDecimal calculatePrecoAreaTotal(Integer id) {
 
        PropertyEntity property = propertyRepository.findById(id);
        BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
-
        return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
-
-       // return newResult = Math.multiplyExact(property.getDistrict().getValueDistrictM2(),proprieArea);
-
-       //return district.getValueDistrictM2().multiply(BigDecimal.valueOf(this.totalPropertyArea());
-
 
     }
 }

@@ -4,7 +4,6 @@ import br.com.meli.desafio_quality.service.PropertyService;
 import org.springframework.web.bind.annotation.*;
 import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
-
 import java.math.BigDecimal;
 
 //@RequestMapping("/seuImovel")
