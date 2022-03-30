@@ -13,6 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
+import java.util.function.Function;
 
 @Service
 public class PropertyService {
@@ -36,7 +37,7 @@ public class PropertyService {
 
         AtomicReference<Double> totalArea = new AtomicReference<>(0.00);
 
-        rooms.stream().forEach(roomEntity -> totalArea.updateAndGet(v -> v + roomEntity.getArea()));
+        rooms.forEach(roomEntity -> totalArea.updateAndGet(v -> v + roomEntity.getArea()));
 
         return totalArea.get();
     }
@@ -62,4 +63,25 @@ public class PropertyService {
 
         return room;
     }
+    /**  Dado o id de um imóvel, busca e calcula a área de cada um de seus cômodos.
+     *
+     * @param  propertyId id do imóvel alvo da operação.
+     * @return Entidade do imóvel com cada um de seus cômodos com a área calculada.
+     */
+    public PropertyEntity calculateRoomsArea(Integer propertyId) {
+        PropertyEntity property = propertyRepository.findById(propertyId);
+        property.getRooms().forEach(room -> room.setArea(calculateRoomEntityArea(room)));
+        return property;
+    }
+
+    /**
+     * Dado um cômodo calcula sua área seguindo a fórmula largura x comprimento.
+     *
+     * @param  roomEntity Cômodo em que se deseja calcular a área.
+     * @return A área do cômodo recebido.
+     */
+    private double calculateRoomEntityArea(RoomEntity roomEntity) {
+        return roomEntity.getRoomWidth() * roomEntity.getRoomLength();
+    }
+
 }

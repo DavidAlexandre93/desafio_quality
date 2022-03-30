@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public class PropertyRepository {
-    private List<PropertyEntity> propertyEntities = new ArrayList<>();
+    private static final List<PropertyEntity> propertyEntities = new ArrayList<>();
 
     public PropertyEntity create(PropertyEntity input) {
         propertyEntities.add(input);
