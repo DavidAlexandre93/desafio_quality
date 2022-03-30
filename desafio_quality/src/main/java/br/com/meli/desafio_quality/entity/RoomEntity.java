@@ -20,7 +20,7 @@ public class RoomEntity {
         this.area = calculateArea();
     }
 
-    private Double calculateArea() {
+    public Double calculateArea() {
         return this.roomLength * this.roomWidth;
     }
 
