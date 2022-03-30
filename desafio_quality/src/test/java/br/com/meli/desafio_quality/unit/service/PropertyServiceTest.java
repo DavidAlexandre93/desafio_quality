@@ -35,7 +35,9 @@ public class PropertyServiceTest {
     private PropertyEntity propertyHouse;
 
 
-
+    /**
+     *
+     */
     @BeforeEach
     public void beforeEach() {
         propertyRepository = Mockito.mock(PropertyRepository.class);
@@ -58,6 +60,9 @@ public class PropertyServiceTest {
 
     }
 
+    /**
+     *
+     */
     @Test
     @DisplayName("Test01 - US-0001")
     public void totalPropertyArea_shouldReturnTotalPropertyArea_whenByPropertyId() {
@@ -65,6 +70,9 @@ public class PropertyServiceTest {
         assert propertyService.totalPropertyArea(1).equals(7.15);
     }
 
+    /**
+     *
+     */
     @Test
     @DisplayName("Test02 - US-0001")
     public void totalPropertyArea_shouldTrowNewError_whenInvalidId() {
@@ -73,6 +81,9 @@ public class PropertyServiceTest {
         assertThrows(ResponseStatusException.class, () -> propertyService.totalPropertyArea(2));
     }
 
+    /**
+     *
+     */
     @Test
     @DisplayName("Test01 - US-0003")
     public void biggestRoom_shouldBiggestRoom_whenValidId(){
@@ -80,12 +91,19 @@ public class PropertyServiceTest {
         assert(propertyService.biggestRoom(1)).getRoomName().equals("Kitchen");
     }
 
+    /**
+     *
+     */
     @Test
     @DisplayName("Test02 - US-0003")
     public void biggestRoom_shouldBiggestRoom_whenInvalidId() {
         Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
         assertThrows(ResponseStatusException.class, () -> propertyService.biggestRoom(2));
     }
+
+    /**
+     *
+     */
     @DisplayName("Test01 - US-0004")
     public void calculateRoomsArea_shouldProperlyCalculateEachRoomArea_whenPropertyIsFound() {
         when(propertyRepository.findById(any(Integer.class))).thenReturn(propertyHouse);
@@ -99,6 +117,9 @@ public class PropertyServiceTest {
         assertThat(roomsArea).containsExactlyInAnyOrder(3.75d, 2.4d , 1d);
     }
 
+    /**
+     *
+     */
     @Test
     @DisplayName("Test02 - US-0004")
     public void calculateRoomsArea_shouldThrowResponseStatusException_whenPropertyDoesNotExists() {
@@ -107,6 +128,9 @@ public class PropertyServiceTest {
     }
 
 
+    /**
+     *
+     */
     @Test
     @DisplayName("Test01 - US-0002")
     public void totalValor_shouldTrowNewError_whenInvalidId() {
@@ -141,10 +165,4 @@ public class PropertyServiceTest {
         assertEquals(propertyService.calculatePrecoAreaTotal(1),propertyService.calculatePrecoAreaTotal(1), exception.getMessage());
     }
 
-    /** @Test
-    public void testaAGravacaoDeUmBairroJaCadastrado() {
-    PropertyRepository repository = new PropertyRepository();
-    PropertyEntity property = new PropertyEntity("Bairro","District","Rooms");
-    assertThrows(repository.create(property),exception.getMessage());
-    }**/
 }

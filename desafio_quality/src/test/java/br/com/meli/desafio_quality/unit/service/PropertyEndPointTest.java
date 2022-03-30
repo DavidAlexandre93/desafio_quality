@@ -34,6 +34,10 @@ public class PropertyEndPointTest {
     @Autowired
     private PropertyService propertyService;
 
+    /**
+     * @Description: Exemplo
+     * @throws Exception
+     */
     public void classTest() throws Exception{
 
        mvc.perform(MockMvcRequestBuilders.post("/teste")
@@ -43,7 +47,9 @@ public class PropertyEndPointTest {
     }
 
     /**
-     * US02 - Teste integrado
+     * @Author: David e Matheus
+     * @Teste: Teste integrado
+     * @Description: Validar o valor da propriedade e comparar com o resultado obtido
      * @throws Exception
      */
     @Test

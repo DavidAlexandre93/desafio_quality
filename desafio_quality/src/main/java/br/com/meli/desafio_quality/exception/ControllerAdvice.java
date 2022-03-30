@@ -15,6 +15,11 @@ import java.util.List;
 @RestControllerAdvice
 public class ControllerAdvice {
 
+    /**
+     *
+     * @param ex
+     * @return
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
