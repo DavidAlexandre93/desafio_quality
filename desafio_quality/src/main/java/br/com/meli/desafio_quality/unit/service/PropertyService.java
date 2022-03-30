@@ -4,6 +4,7 @@ import br.com.meli.desafio_quality.dto.PropertyDTO;
 import br.com.meli.desafio_quality.entity.DistrictEntity;
 import br.com.meli.desafio_quality.entity.PropertyEntity;
 import br.com.meli.desafio_quality.entity.RoomEntity;
+import br.com.meli.desafio_quality.repository.DistrictRepository;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
 
 import org.springframework.stereotype.Service;
@@ -17,10 +18,15 @@ import java.util.stream.Collectors;
 @Service
 public class PropertyService {
     private PropertyRepository propertyRepository;
+    private DistrictRepository districtRepository = new DistrictRepository();
+
+
 
     public PropertyService(PropertyRepository propertyRepository) {
         this.propertyRepository = propertyRepository;
     }
+
+    
 
     public PropertyEntity addProperty(PropertyDTO input) {
         PropertyEntity property = new PropertyEntity(input.getPropName(),
@@ -45,13 +51,28 @@ public class PropertyService {
      * Indicar o preço dessa mesma propriedade com base na área total.
      * Lembre-se que os preços por metro quadrado são determinados em função do
      * bairro.
+     *
+     *  Verifique se o bairro de entrada existe no
+     *     repositório de bairro
      */
-   public BigDecimal calculatePrecoAreaTotal(Integer id) {
 
-       PropertyEntity property = propertyRepository.findById(id);
-       BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
-       return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
 
+    public boolean bairroExiste(Integer id) {
+        String nomeBairro = propertyRepository.findById(id).getDistrict().getPropDistrict();
+        return districtRepository.findAll().stream().anyMatch(x -> x.getPropDistrict().equals(nomeBairro));
+    }
+
+   public BigDecimal calculatePrecoAreaTotal(Integer id) throws IllegalArgumentException {
+
+        PropertyEntity property = propertyRepository.findById(id);
+     if(!bairroExiste(id)) {
+         System.out.println("Bairro nao esta na lista");
+         throw new IllegalArgumentException("Bairro não encontrado no banco de dados");
+     }
+     else{
+         BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
+         return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
+     }
     }
 
     // Req 03
