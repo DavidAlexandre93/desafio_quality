@@ -44,12 +44,25 @@ public class PropertyService {
      * Indicar o preço dessa mesma propriedade com base na área total.
      * Lembre-se que os preços por metro quadrado são determinados em função do
      * bairro.
+     *
+     *  Verifique se o bairro de entrada existe no
+     *     repositório de bairro
      */
+
+
+    private boolean bairroExiste(Integer id) {
+        PropertyEntity property = propertyRepository.findById(id);
+        return property.getId().anyMatch();
+    }
+
    public BigDecimal calculatePrecoAreaTotal(Integer id) {
 
        PropertyEntity property = propertyRepository.findById(id);
+     if(!bairroExiste(id)) {
+
+
+     }
        BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
        return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
-
     }
 }

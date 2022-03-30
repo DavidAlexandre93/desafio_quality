@@ -62,4 +62,14 @@ public class PropertyServiceTest {
 
         assertThrows(ResponseStatusException.class, () -> propertyService.totalPropertyArea(2));
     }
+
+
+    @Test
+    @DisplayName("Test01 - US-0002")
+    public void totalValor_shouldTrowNewError_whenInvalidId() {
+
+        Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
+
+        assertThrows(ResponseStatusException.class, () -> propertyService.totalPropertyArea(2));
+    }
 }
