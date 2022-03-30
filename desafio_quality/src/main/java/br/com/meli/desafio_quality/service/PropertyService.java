@@ -52,4 +52,6 @@ public class PropertyService {
        return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
 
     }
+
+    // Req 03
 }
