@@ -2,6 +2,7 @@ package br.com.meli.desafio_quality.controller;
 
 import br.com.meli.desafio_quality.dto.PropertyDTO;
 import br.com.meli.desafio_quality.entity.PropertyEntity;
+import br.com.meli.desafio_quality.entity.RoomEntity;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
 import br.com.meli.desafio_quality.service.PropertyService;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,12 @@ public class Controller {
     @GetMapping("/totalpropriedade")
     public ResponseEntity<BigDecimal> precototalPropriedade(@RequestParam Integer id) {
         return ResponseEntity.ok(propertyService.calculatePrecoAreaTotal(id));
+    }
+
+    @GetMapping("/biggestRoom/{id}")
+    public RoomEntity getBiggestRoom(@PathVariable Integer id) {
+        RoomEntity room = propertyService.biggestRoom(id);
+        return room;
     }
 
 }

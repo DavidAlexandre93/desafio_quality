@@ -62,4 +62,11 @@ public class PropertyServiceTest {
 
         assertThrows(ResponseStatusException.class, () -> propertyService.totalPropertyArea(2));
     }
+
+    @Test
+    @DisplayName("Test01 - US-0003")
+    public void biggestRoom_shouldBiggestRoom_whenValidId(){
+
+
+    }
 }
