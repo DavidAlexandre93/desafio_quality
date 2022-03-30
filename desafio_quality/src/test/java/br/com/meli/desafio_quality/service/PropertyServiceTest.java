@@ -5,6 +5,8 @@ import br.com.meli.desafio_quality.entity.DistrictEntity;
 import br.com.meli.desafio_quality.entity.PropertyEntity;
 import br.com.meli.desafio_quality.entity.RoomEntity;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -72,4 +74,35 @@ public class PropertyServiceTest {
 
         assertThrows(ResponseStatusException.class, () -> propertyService.totalPropertyArea(2));
     }
+
+    /**
+     * @Descritption: Verifique se o bairro de entrada existe no
+     * repositório de bairro
+     */
+    @Test
+    @DisplayName("Test01 - US-0002")
+    public void bairroExiste_shouldTrowNewError_whenInvalidBairro() {
+
+        Throwable exception = assertThrows(RuntimeException.class,()->propertyService.bairroExiste(2));
+        assertEquals("Bairro nao existe!", exception.getMessage());
+
+    }
+
+    /**
+     * @Descritption: Verificar se o valor da propriedade com base no comodo e medida se esta correto
+     */
+    @Test
+    @DisplayName("Test02 - US-0002")
+    public void valorPropriedade_shouldTrowNewError_whenInvalidValor() {
+
+        Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
+        assertThrows(ResponseStatusException.class, () -> propertyService.calculatePrecoAreaTotal(2));
+    }
+
+    /** @Test
+    public void testaAGravacaoDeUmBairroJaCadastrado() {
+    PropertyRepository repository = new PropertyRepository();
+    PropertyEntity property = new PropertyEntity("Bairro","District","Rooms");
+    assertThrows(repository.create(property),exception.getMessage());
+    }**/
 }

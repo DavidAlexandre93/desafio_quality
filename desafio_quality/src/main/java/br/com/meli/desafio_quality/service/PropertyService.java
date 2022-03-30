@@ -56,7 +56,7 @@ public class PropertyService {
      */
 
 
-    private boolean bairroExiste(Integer id) {
+    public boolean bairroExiste(Integer id) {
         String nomeBairro = propertyRepository.findById(id).getDistrict().getPropDistrict();
         return districtRepository.findAll().stream().anyMatch(x -> x.getPropDistrict().equals(nomeBairro));
     }
