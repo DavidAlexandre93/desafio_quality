@@ -73,4 +73,5 @@ public class PropertyService {
          return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
      }
     }
+
 }
