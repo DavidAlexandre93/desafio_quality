@@ -9,6 +9,7 @@ import br.com.meli.desafio_quality.repository.PropertyRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -51,5 +52,14 @@ public class PropertyService {
        BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
        return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
 
+    }
+
+    // Req 03
+
+    public RoomEntity biggestRoom(Integer id) {
+        PropertyEntity property = propertyRepository.findById(id);
+        RoomEntity room = property.getRooms().stream().max(Comparator.comparingDouble(RoomEntity::calculateArea)).get();
+
+        return room;
     }
 }
