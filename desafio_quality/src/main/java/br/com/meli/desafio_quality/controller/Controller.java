@@ -6,10 +6,12 @@ import br.com.meli.desafio_quality.repository.PropertyRepository;
 import br.com.meli.desafio_quality.service.PropertyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
+import lombok.NoArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import java.math.BigDecimal;
 
-@RequestMapping("/seuImovel")
+//@RequestMapping("/seuImovel")
 @RestController
 public class Controller {
 
@@ -30,6 +32,12 @@ public class Controller {
     @GetMapping(path = "/totalArea/{id}")
     public ResponseEntity<Double> totalPropertyArea(@PathVariable Integer id) {
         return ResponseEntity.ok(propertyService.totalPropertyArea(id));
+    }
+
+
+    @GetMapping("/totalpropriedade")
+    public ResponseEntity<BigDecimal> precototalPropriedade(@RequestParam Integer id) {
+        return ResponseEntity.ok(propertyService.calculatePrecoAreaTotal(id));
     }
 
 }

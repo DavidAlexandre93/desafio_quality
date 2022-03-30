@@ -8,6 +8,7 @@ import br.com.meli.desafio_quality.repository.PropertyRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
@@ -37,5 +38,18 @@ public class PropertyService {
         rooms.stream().forEach(roomEntity -> totalArea.updateAndGet(v -> v + roomEntity.getArea()));
 
         return totalArea.get();
+    }
+
+    /**
+     * Indicar o preço dessa mesma propriedade com base na área total.
+     * Lembre-se que os preços por metro quadrado são determinados em função do
+     * bairro.
+     */
+   public BigDecimal calculatePrecoAreaTotal(Integer id) {
+
+       PropertyEntity property = propertyRepository.findById(id);
+       BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
+       return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
+
     }
 }
