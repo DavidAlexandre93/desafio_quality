@@ -4,6 +4,7 @@ import br.com.meli.desafio_quality.dto.PropertyDTO;
 import br.com.meli.desafio_quality.entity.DistrictEntity;
 import br.com.meli.desafio_quality.entity.PropertyEntity;
 import br.com.meli.desafio_quality.entity.RoomEntity;
+import br.com.meli.desafio_quality.repository.DistrictRepository;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
 
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ import java.util.stream.Collectors;
 @Service
 public class PropertyService {
     private PropertyRepository propertyRepository;
+    private DistrictRepository districtRepository = new DistrictRepository();
+
+
 
     public PropertyService(PropertyRepository propertyRepository) {
         this.propertyRepository = propertyRepository;
@@ -51,18 +55,23 @@ public class PropertyService {
 
 
     private boolean bairroExiste(Integer id) {
-        PropertyEntity property = propertyRepository.findById(id);
-        return property.getId().anyMatch();
+        boolean districtExist = false;
+        String nomeBairro = propertyRepository.findById(id).getDistrict().getPropDistrict();
+        districtExist = districtRepository.districts.stream().anyMatch(x -> x.getPropDistrict().equals(nomeBairro));
+
+        return districtExist;
     }
 
    public BigDecimal calculatePrecoAreaTotal(Integer id) {
 
-       PropertyEntity property = propertyRepository.findById(id);
+        PropertyEntity property = propertyRepository.findById(id);
      if(!bairroExiste(id)) {
-
-
+         System.out.println("Bairro nao esta na lista");
+         throw new IllegalArgumentException("Bairro não encontrado no banco de dados");
      }
-       BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
-       return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
+     else{
+         BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
+         return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
+     }
     }
 }
