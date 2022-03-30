@@ -24,7 +24,10 @@ public class PropertyRepository {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
     }
 
-    public void clearRepository() {
+    /**
+     * Método utilizado para remover todos os elementos armazenados no repositório.
+     */
+    public void clear() {
         propertyEntities.clear();
     }
 

@@ -38,7 +38,7 @@ public class PropertyIntegrationTest {
 
     @BeforeEach
     public void setup() {
-        propertyRepository.clearRepository();
+        propertyRepository.clear();
     }
 
     @Test
