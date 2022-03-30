@@ -36,7 +36,7 @@ public class PropertyServiceTest {
         roomEntities.add(bathRoom);
         roomEntities.add(bedRoom);
 
-        propertyHouse = new PropertyEntity(1, "House", districtOne, roomEntities);
+        propertyHouse = new PropertyEntity("House", districtOne, roomEntities);
     }
 
     /**

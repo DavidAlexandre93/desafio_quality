@@ -12,6 +12,11 @@ import java.util.List;
 public class PropertyRepository {
     private List<PropertyEntity> propertyEntities = new ArrayList<>();
 
+    public PropertyEntity create(PropertyEntity input) {
+        propertyEntities.add(input);
+        return input;
+    }
+
     public PropertyEntity findById(Integer id) {
         return propertyEntities.stream()
                 .filter(propertyEntity -> propertyEntity.getId().equals(id))
