@@ -17,7 +17,7 @@ import java.util.List;
 public class DistrictRepository {
 
 
-    public List<DistrictEntity> districts = new ArrayList() {
+    private List<DistrictEntity> districts = new ArrayList() {
         {
         add(new DistrictEntity("Alto Branco", BigDecimal.valueOf(10)));
         add(new DistrictEntity("Centro", BigDecimal.valueOf(5)));
@@ -32,6 +32,10 @@ public class DistrictRepository {
     public void add(DistrictEntity district){
         districts.add(district);
 
+    }
+
+    public List<DistrictEntity> findAll(){
+        return districts;
     }
 
 

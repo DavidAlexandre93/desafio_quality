@@ -25,6 +25,8 @@ public class PropertyService {
         this.propertyRepository = propertyRepository;
     }
 
+    
+
     public PropertyEntity addProperty(PropertyDTO input) {
         PropertyEntity property = new PropertyEntity(input.getPropName(),
                 new DistrictEntity(input.getDistrict().getPropDistrict(), input.getDistrict().getValueDistrictM2()),
@@ -55,14 +57,11 @@ public class PropertyService {
 
 
     private boolean bairroExiste(Integer id) {
-        boolean districtExist = false;
         String nomeBairro = propertyRepository.findById(id).getDistrict().getPropDistrict();
-        districtExist = districtRepository.districts.stream().anyMatch(x -> x.getPropDistrict().equals(nomeBairro));
-
-        return districtExist;
+        return districtRepository.findAll().stream().anyMatch(x -> x.getPropDistrict().equals(nomeBairro));
     }
 
-   public BigDecimal calculatePrecoAreaTotal(Integer id) {
+   public BigDecimal calculatePrecoAreaTotal(Integer id) throws IllegalArgumentException {
 
         PropertyEntity property = propertyRepository.findById(id);
      if(!bairroExiste(id)) {

@@ -2,6 +2,7 @@ package br.com.meli.desafio_quality.controller;
 
 import br.com.meli.desafio_quality.dto.PropertyDTO;
 import br.com.meli.desafio_quality.entity.PropertyEntity;
+import br.com.meli.desafio_quality.repository.DistrictRepository;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
 import br.com.meli.desafio_quality.service.PropertyService;
 import org.springframework.http.ResponseEntity;
