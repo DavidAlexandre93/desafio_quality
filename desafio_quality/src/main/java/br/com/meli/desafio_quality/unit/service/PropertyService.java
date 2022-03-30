@@ -1,4 +1,4 @@
-package br.com.meli.desafio_quality.service;
+package br.com.meli.desafio_quality.unit.service;
 
 import br.com.meli.desafio_quality.dto.PropertyDTO;
 import br.com.meli.desafio_quality.entity.DistrictEntity;
@@ -13,7 +13,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
-import java.util.function.Function;
 
 @Service
 public class PropertyService {

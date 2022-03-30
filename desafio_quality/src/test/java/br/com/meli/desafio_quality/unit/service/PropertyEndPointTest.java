@@ -1,4 +1,4 @@
-package br.com.meli.desafio_quality.service;
+package br.com.meli.desafio_quality.unit.service;
 
 
 

@@ -6,6 +6,7 @@ import br.com.meli.desafio_quality.entity.PropertyEntity;
 import br.com.meli.desafio_quality.entity.RoomEntity;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
 import br.com.meli.desafio_quality.service.PropertyService;
+import br.com.meli.desafio_quality.unit.service.PropertyService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;

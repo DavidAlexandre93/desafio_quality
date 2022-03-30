@@ -1,4 +1,4 @@
-package br.com.meli.desafio_quality.service;
+package br.com.meli.desafio_quality.unit.service;
 
 
 import br.com.meli.desafio_quality.entity.DistrictEntity;
@@ -16,7 +16,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import java.math.BigDecimal;
