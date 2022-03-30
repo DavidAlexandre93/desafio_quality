@@ -26,7 +26,7 @@ public class PropertyServiceTest {
     private RoomEntity bedRoom = new RoomEntity("bedRoom", 1.20, 2.15);
     private RoomEntity bathRoom = new RoomEntity("bathRoom", 1.0, 1.0);
     private PropertyEntity propertyHouse;
-    private RoomEntity bigRoom;
+
 
 
     @BeforeEach
@@ -69,8 +69,7 @@ public class PropertyServiceTest {
     @Test
     @DisplayName("Test01 - US-0003")
     public void biggestRoom_shouldBiggestRoom_whenValidId(){
-        Mockito.when(propertyService.biggestRoom(1)).thenReturn(bigRoom);
-        assert (bigRoom).getRoomName().equals("Kitchen");
-
+        Mockito.when(propertyRepository.findById(1)).thenReturn(propertyHouse);
+        assert(propertyService.biggestRoom(1)).getRoomName().equals("Kitchen");
     }
 }
