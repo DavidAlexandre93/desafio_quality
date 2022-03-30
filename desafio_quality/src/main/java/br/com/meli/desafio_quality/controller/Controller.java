@@ -51,7 +51,6 @@ public class Controller {
      * @param   id  id do imóvel
      * @return      lista de cômodos do imóvel com suas áreas calculadas
      */
-
     @GetMapping("/property/{id}/rooms-area")
     public ResponseEntity<?> calculateRoomsArea(@PathVariable Integer id) {
         PropertyEntity propertyEntity = propertyService.calculateRoomsArea(id);
