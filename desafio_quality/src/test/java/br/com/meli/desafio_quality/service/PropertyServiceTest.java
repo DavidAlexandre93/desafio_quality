@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
@@ -25,6 +26,8 @@ public class PropertyServiceTest {
     private RoomEntity bedRoom = new RoomEntity("bedRoom", 1.20, 2.15);
     private RoomEntity bathRoom = new RoomEntity("bathRoom", 1.0, 1.0);
     private PropertyEntity propertyHouse;
+    private RoomEntity bigRoom;
+
 
     @BeforeEach
     public void beforeEach() {
@@ -66,7 +69,8 @@ public class PropertyServiceTest {
     @Test
     @DisplayName("Test01 - US-0003")
     public void biggestRoom_shouldBiggestRoom_whenValidId(){
-
+        Mockito.when(propertyService.biggestRoom(1)).thenReturn(bigRoom);
+        assert (bigRoom).getRoomName().equals("Kitchen");
 
     }
 }
