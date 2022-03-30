@@ -24,4 +24,8 @@ public class PropertyRepository {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
     }
 
+    public void clearRepository() {
+        propertyEntities.clear();
+    }
+
 }

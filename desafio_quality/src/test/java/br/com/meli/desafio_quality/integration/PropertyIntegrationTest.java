@@ -2,7 +2,9 @@ package br.com.meli.desafio_quality.integration;
 
 import br.com.meli.desafio_quality.dto.PropertyRoomsResponseDTO;
 import br.com.meli.desafio_quality.dto.RoomAreaResponseDTO;
+import br.com.meli.desafio_quality.repository.PropertyRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,13 @@ public class PropertyIntegrationTest {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @Autowired
+    private PropertyRepository propertyRepository;
+
+    @BeforeEach
+    public void setup() {
+        propertyRepository.clearRepository();
+    }
 
     @Test
     @DisplayName("Test01 - US-0004 - Integração")
