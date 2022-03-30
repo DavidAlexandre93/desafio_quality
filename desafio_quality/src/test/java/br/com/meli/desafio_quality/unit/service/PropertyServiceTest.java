@@ -137,7 +137,8 @@ public class PropertyServiceTest {
     public void valorPropriedade_shouldTrowNewError_whenInvalidValor() {
 
         Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
-        assertThrows(ResponseStatusException.class, () -> propertyService.calculatePrecoAreaTotal(2));
+        Throwable exception = assertThrows(ResponseStatusException.class, () -> propertyService.calculatePrecoAreaTotal(2));
+        assertEquals(propertyService.calculatePrecoAreaTotal(1),propertyService.calculatePrecoAreaTotal(1), exception.getMessage());
     }
 
     /** @Test
