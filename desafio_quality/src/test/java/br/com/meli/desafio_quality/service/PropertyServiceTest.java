@@ -86,6 +86,7 @@ public class PropertyServiceTest {
         Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
         assertThrows(ResponseStatusException.class, () -> propertyService.biggestRoom(2));
     }
+    @DisplayName("Test01 - US-0004")
     public void calculateRoomsArea_shouldProperlyCalculateEachRoomArea_whenPropertyIsFound() {
         when(propertyRepository.findById(any(Integer.class))).thenReturn(propertyHouse);
 
@@ -99,6 +100,7 @@ public class PropertyServiceTest {
     }
 
     @Test
+    @DisplayName("Test02 - US-0004")
     public void calculateRoomsArea_shouldThrowResponseStatusException_whenPropertyDoesNotExists() {
         when(propertyRepository.findById(any())).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
         assertThrows(ResponseStatusException.class, () -> propertyService.calculateRoomsArea(2));
