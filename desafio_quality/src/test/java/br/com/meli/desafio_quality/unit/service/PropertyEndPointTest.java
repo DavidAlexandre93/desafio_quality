@@ -4,7 +4,9 @@ package br.com.meli.desafio_quality.unit.service;
 
 import br.com.meli.desafio_quality.dto.DistrictDTO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import br.com.meli.desafio_quality.dto.PropertyDTO;
+import br.com.meli.desafio_quality.dto.RoomDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,13 +18,15 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.util.ArrayList;
+import java.util.List;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@EnableWebMvc
 
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PropertyEndPointTest {
+
 
     @Autowired
     private MockMvc mvc;
@@ -38,17 +42,33 @@ public class PropertyEndPointTest {
                .andExpect(MockMvcResultMatchers.status().isCreated());
     }
 
+    /**
+     * US02 - Teste integrado
+     * @throws Exception
+     */
     @Test
-    public void valorPropriedade_shouldTrowNewError_whenInvalidValor(Integer id) throws Exception {
+    public void valorPropriedade_shouldTrowNewError_whenInvalidValor() throws Exception {
 
-        BigDecimal valorProperty = propertyService.calculatePrecoAreaTotal(id);
+         DistrictDTO districtOne = new DistrictDTO("districtOne", new BigDecimal(2500));
+         RoomDTO kitchen = new RoomDTO("Kitchen", 2.50, 1.5);
+         RoomDTO bedRoom = new RoomDTO("bedRoom", 1.20, 2.0);
+         RoomDTO bathRoom = new RoomDTO("bathRoom", 1.0, 1.0);
+
+         List<RoomDTO> roomDto = new ArrayList<>();
+
+         roomDto.add(kitchen);
+         roomDto.add(bathRoom);
+         roomDto.add(bedRoom);
+
+         PropertyDTO property = new PropertyDTO("House", districtOne, roomDto);
+         propertyService.addProperty(property);
 
         MvcResult result = mvc.perform(MockMvcRequestBuilders
-                .get("/totalpropriedade", valorProperty.add(BigDecimal.valueOf(id)))
-        ).andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
-        String jsonReturned = result.getResponse().getContentAsString();
-        DistrictDTO dto = new ObjectMapper().readValue(jsonReturned, DistrictDTO.class);
-        assertEquals(propertyService.calculatePrecoAreaTotal(id), dto.getValueDistrictM2());
+                .get("/totalpropriedade/1"))
+                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+              BigDecimal jsonReturned = new BigDecimal(result.getResponse().getContentAsString());
+
+              assertEquals(jsonReturned.round(new MathContext(2)), new BigDecimal(17875.00).round(new MathContext(2)));
     }
 
 

@@ -7,9 +7,6 @@ import br.com.meli.desafio_quality.entity.RoomEntity;
 import br.com.meli.desafio_quality.unit.service.PropertyService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import br.com.meli.desafio_quality.repository.DistrictRepository;
-import br.com.meli.desafio_quality.repository.PropertyRepository;
-import br.com.meli.desafio_quality.service.PropertyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,8 +33,8 @@ public class Controller {
     }
 
 
-    @GetMapping("/totalpropriedade")
-    public ResponseEntity<BigDecimal> precototalPropriedade(@RequestParam Integer id) {
+    @GetMapping("/totalpropriedade/{id}")
+    public ResponseEntity<BigDecimal> precototalPropriedade(@PathVariable Integer id) {
         return ResponseEntity.ok(propertyService.calculatePrecoAreaTotal(id));
     }
 

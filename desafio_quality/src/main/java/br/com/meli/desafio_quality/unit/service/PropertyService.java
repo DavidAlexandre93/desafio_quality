@@ -58,10 +58,15 @@ public class PropertyService {
 
 
     public boolean bairroExiste(Integer id) {
-        String nomeBairro = propertyRepository.findById(id).getDistrict().getPropDistrict();
-        return districtRepository.findAll().stream().anyMatch(x -> x.getPropDistrict().equals(nomeBairro));
-    }
+        try {
+            propertyRepository.findById(id).getDistrict().getPropDistrict();
+            return true;
+            //return districtRepository.findAll().stream().anyMatch(x -> x.getPropDistrict().equals(nomeBairro));
 
+        }catch (NullPointerException e){
+            return false;
+        }
+    }
    public BigDecimal calculatePrecoAreaTotal(Integer id) throws IllegalArgumentException {
 
         PropertyEntity property = propertyRepository.findById(id);
@@ -73,7 +78,7 @@ public class PropertyService {
          BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
          return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
      }
-    }
+   }
 
     // Req 03
 
