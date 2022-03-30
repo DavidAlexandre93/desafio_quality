@@ -28,12 +28,19 @@ public class DistrictRepository {
     };
 
 
-
+    /**
+     *
+     * @param district
+     */
     public void add(DistrictEntity district){
         districts.add(district);
 
     }
 
+    /**
+     *
+     * @return
+     */
     public List<DistrictEntity> findAll(){
         return districts;
     }

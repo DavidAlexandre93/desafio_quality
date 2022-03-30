@@ -20,6 +20,10 @@ public class RoomEntity {
         this.area = calculateArea();
     }
 
+    /**
+     *
+     * @return
+     */
     public Double calculateArea() {
         return this.roomLength * this.roomWidth;
     }

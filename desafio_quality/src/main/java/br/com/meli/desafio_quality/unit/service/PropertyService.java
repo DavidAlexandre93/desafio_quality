@@ -6,9 +6,7 @@ import br.com.meli.desafio_quality.entity.PropertyEntity;
 import br.com.meli.desafio_quality.entity.RoomEntity;
 import br.com.meli.desafio_quality.repository.DistrictRepository;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
-
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.List;
@@ -21,13 +19,20 @@ public class PropertyService {
     private DistrictRepository districtRepository = new DistrictRepository();
 
 
-
+    /**
+     *
+     * @param propertyRepository
+     */
     public PropertyService(PropertyRepository propertyRepository) {
         this.propertyRepository = propertyRepository;
     }
 
-    
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     public PropertyEntity addProperty(PropertyDTO input) {
         PropertyEntity property = new PropertyEntity(input.getPropName(),
                 new DistrictEntity(input.getDistrict().getPropDistrict(), input.getDistrict().getValueDistrictM2()),
@@ -37,6 +42,11 @@ public class PropertyService {
         return property;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Double totalPropertyArea(Integer id) {
         List<RoomEntity> rooms = propertyRepository.findById(id).getRooms();
 
@@ -48,20 +58,29 @@ public class PropertyService {
     }
 
     /**
-     * Indicar o preço dessa mesma propriedade com base na área total.
-     * Lembre-se que os preços por metro quadrado são determinados em função do
-     * bairro.
-     *
-     *  Verifique se o bairro de entrada existe no
-     *     repositório de bairro
+     * @Author: David e Matheus
+     * @Metodo: Validar se o Bairro Existe ou Nao
+     * @Description: Realizar a validacao da existencia do bairro antes do calculo ser realizado
+     * @param id
+     * @return
      */
-
-
     public boolean bairroExiste(Integer id) {
-        String nomeBairro = propertyRepository.findById(id).getDistrict().getPropDistrict();
-        return districtRepository.findAll().stream().anyMatch(x -> x.getPropDistrict().equals(nomeBairro));
+        try {
+            propertyRepository.findById(id).getDistrict().getPropDistrict();
+            return true;
+        }catch (NullPointerException e){
+            return false;
+        }
     }
 
+    /**
+     * Author: David e Matheus
+     * @Metodo: calcular o preco total da propriedade com base no m2
+     * @Description: Realizar o calculo de cada propriedade informada de acorodo com o m2 e seus comodos
+     * @param id
+     * @return
+     * @throws IllegalArgumentException
+     */
    public BigDecimal calculatePrecoAreaTotal(Integer id) throws IllegalArgumentException {
 
         PropertyEntity property = propertyRepository.findById(id);
@@ -73,10 +92,13 @@ public class PropertyService {
          BigDecimal proprieArea = new BigDecimal(totalPropertyArea(id));
          return proprieArea.multiply(property.getDistrict().getValueDistrictM2());
      }
-    }
+   }
 
-    // Req 03
-
+    /**
+     *
+     * @param id
+     * @return
+     */
     public RoomEntity biggestRoom(Integer id) {
         PropertyEntity property = propertyRepository.findById(id);
         RoomEntity room = property.getRooms().stream().max(Comparator.comparingDouble(RoomEntity::calculateArea)).get();
@@ -95,8 +117,8 @@ public class PropertyService {
     }
 
     /**
-     * Dado um cômodo calcula sua área seguindo a fórmula largura x comprimento.
-     *
+     * @Metodo: Dado um cômodo calcula sua área seguindo a fórmula largura x comprimento.
+     * @Description:
      * @param  roomEntity Cômodo em que se deseja calcular a área.
      * @return A área do cômodo recebido.
      */
