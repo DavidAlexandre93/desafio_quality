@@ -130,5 +130,36 @@ public class PropertyIntegrationTest {
         assertEquals(jsonReturned.round(new MathContext(2)), new BigDecimal(978.25).round(new MathContext(2)));
     }
 
+    /**
+     * @Author: Bruno
+     * @Teste: Teste integrado req 001
+     * @Description: Validar se o endpoint retorna a area correta da propriedade
+     * @throws Exception
+     */
+    @Test
+    public void checkIfEndpointReturnsCorrectAnswer() throws Exception{
+        insertProperty();
+        Integer id = propertyRepository.findAll().stream().findFirst().get().getId();
+        String url = "/totalArea/" + id.toString();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .get(url))
+                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+        String responseString = result.getResponse().getContentAsString();
+
+        assertEquals(responseString, "215.0");
+    }
+
+    @Test
+    public void checkIfEndpointReturnsErrorWhenReceiveingWringInput() throws Exception{
+        insertProperty();
+        Integer id = propertyRepository.findAll().stream().findFirst().get().getId() + 1;
+        String url = "/totalArea/" + id.toString();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .get(url))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn();
+        String responseString = result.getResponse().getErrorMessage();
+
+        assertEquals(responseString, "Propriedade não encontrada");
+    }
 
 }
