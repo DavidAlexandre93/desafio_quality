@@ -82,17 +82,11 @@ public class PropertyService {
      * @throws IllegalArgumentException
      */
    public BigDecimal calculatePrecoAreaTotal(Integer id){
-
+       
         PropertyEntity property = propertyRepository.findById(id);
-   //  if(!bairroExiste(id)) {
+        BigDecimal totalproperty = BigDecimal.valueOf(totalPropertyArea(id));
 
-     //    throw new IllegalArgumentException("Bairro não encontrado no banco de dados");
-    // }
-     //else {
-         //BigDecimal totalproperty = new BigDecimal(totalPropertyArea(id));
-         BigDecimal totalproperty = BigDecimal.valueOf(totalPropertyArea(id));
-         return totalproperty.multiply(property.getDistrict().getValueDistrictM2());
-  //   }
+        return totalproperty.multiply(property.getDistrict().getValueDistrictM2());
    }
 
     /**
