@@ -201,7 +201,7 @@ public class PropertyServiceTest {
     }
 
     /**
-     * @Descritption: Verificar se a funcao de calculo do valor total de uma propriedade retorna o valor correto de calculo
+     * @Descritption: Verificar se a funcao de Bairro existe retorna uma exceção ao ser alimentada com um id invalido
      */
     @Test
     @DisplayName("Test05 - US-0002")
