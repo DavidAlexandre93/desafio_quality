@@ -68,7 +68,7 @@ public class Controller {
      * @param id
      * @return
      */
-    @GetMapping("/property/{id}/rooms-area")
+    @GetMapping("/property/roomarea/{id}")
     public ResponseEntity<?> calculateRoomsArea(@PathVariable Integer id) {
         PropertyEntity propertyEntity = propertyService.calculateRoomsArea(id);
         PropertyRoomsResponseDTO response = modelMapper.map(propertyEntity, PropertyRoomsResponseDTO.class);
