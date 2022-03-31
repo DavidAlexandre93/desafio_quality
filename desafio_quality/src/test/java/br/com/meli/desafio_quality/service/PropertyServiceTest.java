@@ -159,4 +159,24 @@ public class PropertyServiceTest {
 
     }
 
+
+    /**
+     * @Descritption: Verificar se a funcao de calculo do valor total de uma propriedade retorna o valor correto de calculo
+     */
+    @Test
+    @DisplayName("Test03 - US-0002")
+    public void calculatePrecoAreaTotal_shouldReturnValorPropriedade_whenByPropertyId() {
+        boolean result = false;
+        when(propertyRepository.findById(1)).thenReturn(propertyHouse);
+
+        if(propertyService.calculatePrecoAreaTotal(1).compareTo(BigDecimal.valueOf(17875.00)) == 0)
+            result = true;
+        else
+            result = false;
+
+        assert result;
+
+    }
+
+
 }
