@@ -2,6 +2,7 @@ package br.com.meli.desafio_quality.repository;
 
 
 import br.com.meli.desafio_quality.entity.PropertyEntity;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
@@ -32,6 +33,19 @@ public class PropertyRepository {
                 .filter(propertyEntity -> propertyEntity.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
+    }
+
+    /**
+     *
+     * @param
+     * @return
+     */
+    public List<PropertyEntity> findAll() {
+        if (propertyEntities.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "nenhuma propriedade cadastrada");
+        } else {
+            return propertyEntities;
+        }
     }
 
     /**
