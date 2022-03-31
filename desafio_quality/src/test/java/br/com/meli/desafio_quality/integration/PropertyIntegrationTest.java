@@ -50,7 +50,6 @@ public class PropertyIntegrationTest {
     }
 
     /**
-     *
      * @throws Exception
      */
     @Test
@@ -76,7 +75,6 @@ public class PropertyIntegrationTest {
     }
 
     /**
-     *
      * @throws Exception
      */
     @Test
@@ -109,17 +107,16 @@ public class PropertyIntegrationTest {
                 "}";
 
         mockMvc.perform(post("/new")
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(propertyJson));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(propertyJson));
     }
 
 
-
     /**
+     * @throws Exception
      * @Author: David e Matheus
      * @Teste: Teste integrado
      * @Description: Validar o valor da propriedade e comparar com o resultado obtido
-     * @throws Exception
      */
     @Test
     public void valorPropriedade_shouldTrowNewError_whenInvalidValor() throws Exception {
@@ -146,5 +143,22 @@ public class PropertyIntegrationTest {
         assertEquals(jsonReturned.round(new MathContext(2)), new BigDecimal(17875.00).round(new MathContext(2)));
     }
 
+    @Test
+    public void checkIfEndpointReturnsBiggestRoom() throws Exception {
 
+////            Integer id = propertyRepository.findAll().stream().findFirst().get().getId();
+////
+//
+//        String biggestRoom = propertyService.biggestRoom(1).getRoomName();
+//
+//            MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+//                    .get("/biggestRoom/{id}"))
+//                    .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+//            String responseString = result.getResponse().getContentAsString();
+//
+//            assertEquals(responseString, "7.15");
+//        }
+//    }
+
+    }
 }

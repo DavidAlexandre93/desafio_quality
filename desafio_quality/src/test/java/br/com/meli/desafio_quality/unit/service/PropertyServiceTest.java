@@ -73,7 +73,9 @@ public class PropertyServiceTest {
     }
 
     /**
-     *
+     * @Author: Mariana e Micaela
+     * @Teste: Teste unitario
+     * @Description: Obter maior comodo da propriedade quando Id valido
      */
     @Test
     @DisplayName("Test01 - US-0003")
@@ -83,7 +85,10 @@ public class PropertyServiceTest {
     }
 
     /**
-     *
+     * @Author: Mariana e Micaela
+     * @Teste: Teste unitario
+     * @Description: Erro ao tentar um Id invalido de uma propriedade
+     * @throws Exception
      */
     @Test
     @DisplayName("Test02 - US-0003")
