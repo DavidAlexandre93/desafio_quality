@@ -16,9 +16,10 @@ public class PropertyRepository {
     private static Integer idAdd = 0;
 
     /**
-     *
+     * @Author Bruno
+     * @Description Criar uma nova propriedade na lista
      * @param input
-     * @return
+     * @return a propriedade cadstrada
      */
     public PropertyEntity create(PropertyEntity input) {
         propertyEntities.add(input);
@@ -28,9 +29,10 @@ public class PropertyRepository {
     }
 
     /**
-     *
+     * @Author Bruno e Pedro
+     * @Description retorna uma propriedade da lista passando o id
      * @param id
-     * @return
+     * @return a propriedade buscada pelo id ou lança um erro de propriedade não encontrada
      */
     public PropertyEntity findById(Integer id) {
         return propertyEntities.stream()
@@ -40,9 +42,9 @@ public class PropertyRepository {
     }
 
     /**
-     *
-     * @param
-     * @return
+     * @Author Bruno
+     * @Description Retorna todas as propriedades cadastradas
+     * @return lista de propriedades cadastradas
      */
     public List<PropertyEntity> findAll() {
         if (propertyEntities.isEmpty()) {

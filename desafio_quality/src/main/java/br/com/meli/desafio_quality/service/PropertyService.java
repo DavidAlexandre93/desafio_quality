@@ -29,9 +29,10 @@ public class PropertyService {
 
 
     /**
-     *
+     * @Author Bruno
+     * @Description Criar uma nova propriedade
      * @param input
-     * @return
+     * @return a propriedade cadstrada
      */
     public PropertyEntity addProperty(PropertyDTO input) {
         PropertyEntity property = new PropertyEntity(input.getPropName(),
@@ -43,9 +44,10 @@ public class PropertyService {
     }
 
     /**
-     *
+     * @Author Bruno e Pedro
+     * @Description Busca a propriedade no repository e calcula a area total desa propriedade
      * @param id
-     * @return
+     * @return A área total da propriedade
      */
     public Double totalPropertyArea(Integer id) {
         List<RoomEntity> rooms = propertyRepository.findById(id).getRooms();
