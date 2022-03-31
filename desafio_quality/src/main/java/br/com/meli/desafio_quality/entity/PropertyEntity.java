@@ -17,6 +17,12 @@ public class PropertyEntity {
     private DistrictEntity district;
     private List<RoomEntity> rooms;
 
+    /**
+     *
+     * @param propName
+     * @param district
+     * @param rooms
+     */
     public PropertyEntity(String propName, DistrictEntity district, List<RoomEntity> rooms) {
         this.propName = propName;
         this.district = district;

@@ -10,18 +10,35 @@ import java.util.List;
 
 @Repository
 public class PropertyRepository {
-    private List<PropertyEntity> propertyEntities = new ArrayList<>();
+    private static final List<PropertyEntity> propertyEntities = new ArrayList<>();
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     public PropertyEntity create(PropertyEntity input) {
         propertyEntities.add(input);
         return input;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public PropertyEntity findById(Integer id) {
         return propertyEntities.stream()
                 .filter(propertyEntity -> propertyEntity.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
+    }
+
+    /**
+     * Método utilizado para remover todos os elementos armazenados no repositório.
+     */
+    public void clear() {
+        propertyEntities.clear();
     }
 
 }
