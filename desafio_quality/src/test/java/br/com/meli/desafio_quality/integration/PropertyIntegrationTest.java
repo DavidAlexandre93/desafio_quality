@@ -82,7 +82,7 @@ public class PropertyIntegrationTest {
     @DisplayName("Test01 - US-0004 - Integração")
     public void calculateRoomsArea_shouldReturnSuccessResult_whenPropertyExistsOnDatabase() throws Exception {
         insertProperty();
-        MvcResult mvcResult = mockMvc.perform(get("/property/roomarea/{id}", 0))
+        MvcResult mvcResult = mockMvc.perform(get("/property/{id}/rooms-area", 0))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -107,7 +107,7 @@ public class PropertyIntegrationTest {
     @Test
     @DisplayName("Test02 - US-0004 - Integração")
     public void calculateRoomsArea_shouldReturnBadRequestResult_whenPropertyDoesNotExistsOnDatabase() throws Exception {
-        mockMvc.perform(get("/property/roomarea/{id}", 0))
+        mockMvc.perform(get("/property/{id}/rooms-area", 0))
                 .andExpect(status().isBadRequest());
     }
 
@@ -160,6 +160,40 @@ public class PropertyIntegrationTest {
         String responseString = result.getResponse().getErrorMessage();
 
         assertEquals(responseString, "Propriedade não encontrada");
+    }
+    /**
+     * @Author: Mariana e Micaela
+     * @Teste: Teste integrado req 003
+     * @Description: Validar se o endpoint retorna o maior comodo da propriedade buscada pelo id
+     * @throws Exception
+     */
+    @Test
+    @DisplayName("Test01 - US-0003 - Integração")
+    public void biggestRoom_shouldBiggestRoom_whenValidId() throws Exception {
+        insertProperty();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .get("/biggestRoom/{id}", 0))
+                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+        String resp = result.getResponse().getContentAsString();
+
+        assertEquals("{\"roomName\":\"Quarto\",\"roomWidth\":15.0,\"roomLength\":12.0,\"area\":180.0}", resp);
+    }
+    /**
+     * @Author: Mariana e Micaela
+     * @Teste: Teste integrado req 003
+     * @Description: Validar se o endpoint retorna erro ao indicar Id invalido
+     * @throws Exception
+     */
+    @Test
+    @DisplayName("Test02 - US-0003 - Integração")
+    public void biggestRoom_shouldBiggestRoom_whenInvalidId() throws Exception {
+        insertProperty();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .get("/biggestRoom/{id}", 99))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn();
+        String resp = result.getResponse().getErrorMessage();
+
+        assertEquals("Propriedade não encontrada", resp);
     }
 
 }
