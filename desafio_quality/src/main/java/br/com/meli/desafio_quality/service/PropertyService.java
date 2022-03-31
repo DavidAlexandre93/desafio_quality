@@ -81,19 +81,13 @@ public class PropertyService {
      * @Description: Realizar o calculo de cada propriedade informada de acorodo com o m2 e seus comodos
      * @param id
      * @return
-     * @throws IllegalArgumentException
      */
-   public BigDecimal calculatePrecoAreaTotal(Integer id) throws IllegalArgumentException {
+   public BigDecimal calculatePrecoAreaTotal(Integer id){
 
         PropertyEntity property = propertyRepository.findById(id);
-   //  if(!bairroExiste(id)) {
+        BigDecimal totalproperty = BigDecimal.valueOf(totalPropertyArea(id));
 
-     //    throw new IllegalArgumentException("Bairro não encontrado no banco de dados");
-    // }
-     //else {
-         BigDecimal totalproperty = new BigDecimal(totalPropertyArea(id));
-         return totalproperty.multiply(property.getDistrict().getValueDistrictM2());
-  //   }
+        return totalproperty.multiply(property.getDistrict().getValueDistrictM2());
    }
 
     /**
