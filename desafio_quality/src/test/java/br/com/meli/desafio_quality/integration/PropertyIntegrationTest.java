@@ -163,7 +163,7 @@ public class PropertyIntegrationTest {
     }
 
     @Test
-    @DisplayName("Teste 01 - US-0003 - Integração")
+    @DisplayName("Test01 - US-0003 - Integração")
     public void biggestRoom_shouldBiggestRoom_whenValidId() throws Exception {
         insertProperty();
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
@@ -175,7 +175,7 @@ public class PropertyIntegrationTest {
     }
 
     @Test
-    @DisplayName("Teste 02 - US-0003 - Integração")
+    @DisplayName("Test02 - US-0003 - Integração")
     public void biggestRoom_shouldBiggestRoom_whenInvalidId() throws Exception {
         insertProperty();
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders
