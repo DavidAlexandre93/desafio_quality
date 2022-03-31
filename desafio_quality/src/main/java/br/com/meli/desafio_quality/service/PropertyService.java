@@ -59,7 +59,6 @@ public class PropertyService {
     public RoomEntity biggestRoom(Integer id) {
         PropertyEntity property = propertyRepository.findById(id);
         RoomEntity room = property.getRooms().stream().max(Comparator.comparingDouble(RoomEntity::calculateArea)).get();
-
         return room;
     }
 }

@@ -28,4 +28,8 @@ public class PropertyEndPointTest {
 
 
     }
+
+    public void biggestRoomPropriedade_shouldReturnBiggestRoom_whenBypropertyId() throws Exception{
+
+    }
 }
