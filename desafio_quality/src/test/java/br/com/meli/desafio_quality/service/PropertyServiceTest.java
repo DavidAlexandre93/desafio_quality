@@ -200,5 +200,18 @@ public class PropertyServiceTest {
 
     }
 
+    /**
+     * @Descritption: Verificar se a funcao de calculo do valor total de uma propriedade retorna o valor correto de calculo
+     */
+    @Test
+    @DisplayName("Test05 - US-0002")
+    public void bairroExiste_shouldReturnValorTrowNewError_whenByPropertyId() {
+
+        Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
+        assertThrows(ResponseStatusException.class, () -> propertyService.bairroExiste(2));
+
+
+    }
+
 
 }
