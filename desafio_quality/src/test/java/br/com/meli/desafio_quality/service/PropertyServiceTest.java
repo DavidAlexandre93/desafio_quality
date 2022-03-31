@@ -165,12 +165,22 @@ public class PropertyServiceTest {
 
     }
 
+    /**
+     * @Descritption: Verificar se a funcao de calculo do valor total de uma propriedade retorna um valor do tipo BigDecimal
+     */
+    @Test
+    @DisplayName("Test03 - US-0002")
+    public void calculatePrecoAreaTotal_shouldReturnBigDecimal_whenByPropertyId() {
+
+        assert (propertyService.calculatePrecoAreaTotal(1).getClass().equals(BigDecimal.class));
+
+    }
 
     /**
      * @Descritption: Verificar se a funcao de calculo do valor total de uma propriedade retorna o valor correto de calculo
      */
     @Test
-    @DisplayName("Test03 - US-0002")
+    @DisplayName("Test04 - US-0002")
     public void calculatePrecoAreaTotal_shouldReturnValorPropriedade_whenByPropertyId() {
         boolean result = false;
         when(propertyRepository.findById(1)).thenReturn(propertyHouse);
