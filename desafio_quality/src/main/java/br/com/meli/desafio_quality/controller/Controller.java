@@ -21,9 +21,10 @@ public class Controller {
     private final ModelMapper modelMapper;
 
     /**
-     *
+     * @Author Bruno
+     * @Description Criar uma nova propriedade no backend da aplicação
      * @param input
-     * @return
+     * @return A propriedade criada ou bad Request
      */
     @PostMapping("/new")
     public ResponseEntity<PropertyEntity> createProperty(@Valid @RequestBody PropertyDTO input) {
@@ -32,9 +33,10 @@ public class Controller {
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * @Author Bruno e Pedro
+     * @Description Calcular a area total de uma propriedade já registrada
+     * @param id de uma propriedade
+     * @return o valor da area total se a propriedade estiver cadstrada, ou bad request se não tiver a propriedade com o id cadastrado
      */
     @GetMapping(path = "/totalArea/{id}")
     public ResponseEntity<Double> totalPropertyArea(@PathVariable Integer id) {
@@ -43,7 +45,7 @@ public class Controller {
 
 
     /**
-     * @Description: Retornar o valor total da propriedade
+     * @Description Retornar o valor total da propriedade
      * @param id
      * @return
      */
