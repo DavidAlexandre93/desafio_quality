@@ -4,7 +4,7 @@ import br.com.meli.desafio_quality.dto.PropertyDTO;
 import br.com.meli.desafio_quality.dto.PropertyRoomsResponseDTO;
 import br.com.meli.desafio_quality.entity.PropertyEntity;
 import br.com.meli.desafio_quality.entity.RoomEntity;
-import br.com.meli.desafio_quality.unit.service.PropertyService;
+import br.com.meli.desafio_quality.service.PropertyService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -74,5 +74,6 @@ public class Controller {
         PropertyRoomsResponseDTO response = modelMapper.map(propertyEntity, PropertyRoomsResponseDTO.class);
         return ResponseEntity.ok(response);
     }
+
 
 }

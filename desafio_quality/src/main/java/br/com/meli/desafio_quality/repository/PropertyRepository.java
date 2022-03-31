@@ -11,7 +11,9 @@ import java.util.List;
 
 @Repository
 public class PropertyRepository {
+
     private static final List<PropertyEntity> propertyEntities = new ArrayList<>();
+    private static Integer idAdd = 0;
 
     /**
      *
@@ -20,6 +22,8 @@ public class PropertyRepository {
      */
     public PropertyEntity create(PropertyEntity input) {
         propertyEntities.add(input);
+        input.setId(idAdd);
+        idAdd ++;
         return input;
     }
 
@@ -53,6 +57,6 @@ public class PropertyRepository {
      */
     public void clear() {
         propertyEntities.clear();
+        idAdd = 0;
     }
-
 }
