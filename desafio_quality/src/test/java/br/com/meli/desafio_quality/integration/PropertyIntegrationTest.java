@@ -82,7 +82,7 @@ public class PropertyIntegrationTest {
     @DisplayName("Test01 - US-0004 - Integração")
     public void calculateRoomsArea_shouldReturnSuccessResult_whenPropertyExistsOnDatabase() throws Exception {
         insertProperty();
-        MvcResult mvcResult = mockMvc.perform(get("/property/roomarea/{id}", 0))
+        MvcResult mvcResult = mockMvc.perform(get("/property/{id}/rooms-area", 0))
                 .andExpect(status().isOk())
                 .andReturn();
 
@@ -107,7 +107,7 @@ public class PropertyIntegrationTest {
     @Test
     @DisplayName("Test02 - US-0004 - Integração")
     public void calculateRoomsArea_shouldReturnBadRequestResult_whenPropertyDoesNotExistsOnDatabase() throws Exception {
-        mockMvc.perform(get("/property/roomarea/{id}", 0))
+        mockMvc.perform(get("/property/{id}/rooms-area", 0))
                 .andExpect(status().isBadRequest());
     }
 
