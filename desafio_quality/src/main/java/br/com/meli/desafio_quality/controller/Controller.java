@@ -64,11 +64,13 @@ public class Controller {
     }
 
     /**
-     * @Metodo:
-     * @param id
-     * @return
+     * Busca um imóvel a partir do id fornecido e caso exista retorna a lista de seus cômodos com as respectivas áreas
+     * calculadas, caso o imóvel não seja encontrado na base de dados resume-se em um retorno com status bad request.
+     *
+     * @param   id  id do imóvel
+     * @return      lista de cômodos do imóvel com suas áreas calculadas
      */
-    @GetMapping("/property/roomarea/{id}")
+    @GetMapping("/property/{id}/rooms-area")
     public ResponseEntity<?> calculateRoomsArea(@PathVariable Integer id) {
         PropertyEntity propertyEntity = propertyService.calculateRoomsArea(id);
         PropertyRoomsResponseDTO response = modelMapper.map(propertyEntity, PropertyRoomsResponseDTO.class);
