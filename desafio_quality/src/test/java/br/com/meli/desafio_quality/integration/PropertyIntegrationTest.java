@@ -162,4 +162,28 @@ public class PropertyIntegrationTest {
         assertEquals(responseString, "Propriedade não encontrada");
     }
 
+    @Test
+    @DisplayName("Test01 - US-0003 - Integração")
+    public void biggestRoom_shouldBiggestRoom_whenValidId() throws Exception {
+        insertProperty();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .get("/biggestRoom/{id}", 0))
+                .andExpect(MockMvcResultMatchers.status().isOk()).andReturn();
+        String resp = result.getResponse().getContentAsString();
+
+        assertEquals("{\"roomName\":\"Quarto\",\"roomWidth\":15.0,\"roomLength\":12.0,\"area\":180.0}", resp);
+    }
+
+    @Test
+    @DisplayName("Test02 - US-0003 - Integração")
+    public void biggestRoom_shouldBiggestRoom_whenInvalidId() throws Exception {
+        insertProperty();
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders
+                .get("/biggestRoom/{id}", 99))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest()).andReturn();
+        String resp = result.getResponse().getErrorMessage();
+
+        assertEquals("Propriedade não encontrada", resp);
+    }
+
 }
