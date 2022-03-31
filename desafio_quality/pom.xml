@@ -24,8 +24,6 @@
 				              **/repository/**/*,
 				              **/DesafioQualityApplication.java
 			</sonar.exclusions>
-
-
 	</properties>
 	<dependencies>
 		<dependency>

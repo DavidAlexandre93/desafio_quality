@@ -151,9 +151,6 @@ public class PropertyServiceTest {
     @DisplayName("Test01 - US-0002")
     public void bairroExiste_shouldTrowNewError_whenInvalidBairro() {
 
-       // Throwable exception = assertThrows(RuntimeException.class,()->propertyService.bairroExiste(2));
-        //assertEquals("Bairro nao existe!", exception.getMessage());
-
         Mockito.when(propertyRepository.findById(1)).thenReturn(propertyHouse);
         assert(propertyService.bairroExiste(1));
 
@@ -177,9 +174,8 @@ public class PropertyServiceTest {
     @Test
     @DisplayName("Test03 - US-0002")
     public void calculatePrecoAreaTotal_shouldReturnBigDecimal_whenByPropertyId() {
-
-        assert (propertyService.calculatePrecoAreaTotal(1).getClass().equals(BigDecimal.class));
-
+        Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
+        assertThrows(ResponseStatusException.class, () -> propertyService.calculatePrecoAreaTotal(2).equals(BigDecimal.valueOf(2)));
     }
 
     /**
