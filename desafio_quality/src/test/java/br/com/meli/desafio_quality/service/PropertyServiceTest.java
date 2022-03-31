@@ -35,7 +35,9 @@ public class PropertyServiceTest {
 
 
     /**
-     *
+     * @Author: Bruno e Pedro
+     * @Teste: preparaçãp dos testes
+     * @Description: gera uma propriedade no Repository mockado
      */
     @BeforeEach
     public void beforeEach() {
@@ -51,7 +53,9 @@ public class PropertyServiceTest {
     }
 
     /**
-     *
+     * @Author: Bruno e Pedro
+     * @Teste: Teste unitario req 1
+     * @Description: valida funcionamento correto da função
      */
     @Test
     @DisplayName("Test01 - US-0001")
@@ -61,7 +65,9 @@ public class PropertyServiceTest {
     }
 
     /**
-     *
+     * @Author: Bruno e Pedro
+     * @Teste: Teste unitario req 1
+     * @Description: valida badrequest com a mensagem propriedade não encontrada
      */
     @Test
     @DisplayName("Test02 - US-0001")
