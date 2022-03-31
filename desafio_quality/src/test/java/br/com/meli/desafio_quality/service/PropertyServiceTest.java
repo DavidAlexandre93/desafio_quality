@@ -72,7 +72,10 @@ public class PropertyServiceTest {
     }
 
     /**
-     *
+     * @Author: Mariana e Micaela
+     * @Teste: Teste integrado req 003
+     * @Description: Validar se o endpoint retorna o maior comodo da propriedade buscada pelo id
+     * @throws Exception
      */
     @Test
     @DisplayName("Test01 - US-0003")
@@ -82,7 +85,10 @@ public class PropertyServiceTest {
     }
 
     /**
-     *
+     * @Author: Mariana e Micaela
+     * @Teste: Teste unitario req 003
+     * @Description: Validar se o endpoint retorna erro ao indicar Id invalido
+     * @throws Exception
      */
     @Test
     @DisplayName("Test02 - US-0003")

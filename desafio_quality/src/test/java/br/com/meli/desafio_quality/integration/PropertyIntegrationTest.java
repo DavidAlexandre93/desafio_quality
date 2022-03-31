@@ -161,7 +161,12 @@ public class PropertyIntegrationTest {
 
         assertEquals(responseString, "Propriedade não encontrada");
     }
-
+    /**
+     * @Author: Mariana e Micaela
+     * @Teste: Teste integrado req 003
+     * @Description: Validar se o endpoint retorna o maior comodo da propriedade buscada pelo id
+     * @throws Exception
+     */
     @Test
     @DisplayName("Test01 - US-0003 - Integração")
     public void biggestRoom_shouldBiggestRoom_whenValidId() throws Exception {
@@ -173,7 +178,12 @@ public class PropertyIntegrationTest {
 
         assertEquals("{\"roomName\":\"Quarto\",\"roomWidth\":15.0,\"roomLength\":12.0,\"area\":180.0}", resp);
     }
-
+    /**
+     * @Author: Mariana e Micaela
+     * @Teste: Teste integrado req 003
+     * @Description: Validar se o endpoint retorna erro ao indicar Id invalido
+     * @throws Exception
+     */
     @Test
     @DisplayName("Test02 - US-0003 - Integração")
     public void biggestRoom_shouldBiggestRoom_whenInvalidId() throws Exception {
