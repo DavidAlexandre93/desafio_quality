@@ -1,4 +1,4 @@
-package br.com.meli.desafio_quality.unit.service;
+package br.com.meli.desafio_quality.service;
 
 import br.com.meli.desafio_quality.dto.PropertyDTO;
 import br.com.meli.desafio_quality.entity.DistrictEntity;

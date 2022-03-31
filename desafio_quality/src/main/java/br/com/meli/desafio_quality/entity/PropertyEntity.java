@@ -10,8 +10,6 @@ import java.util.List;
 @NoArgsConstructor
 public class PropertyEntity {
 
-    private static Integer idAcc = 0;
-
     private Integer id;
     private String propName;
     private DistrictEntity district;
@@ -27,7 +25,8 @@ public class PropertyEntity {
         this.propName = propName;
         this.district = district;
         this.rooms = rooms;
-        idAcc += 1;
-        this.id = idAcc;
+
+       // idAcc += 1;
+        //this.id = idAcc;
     }
 }
