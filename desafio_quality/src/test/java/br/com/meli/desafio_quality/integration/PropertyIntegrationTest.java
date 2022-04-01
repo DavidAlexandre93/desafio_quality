@@ -75,7 +75,9 @@ public class PropertyIntegrationTest {
     }
 
     /**
-     *
+     * @Author: Maik
+     * @Description: Valida se o cálculo da área dos cômodos é efetuado de forma correta;
+     * Refere-se ao requisito US-0004
      * @throws Exception
      */
     @Test
@@ -101,7 +103,10 @@ public class PropertyIntegrationTest {
     }
 
     /**
-     *
+     * @Author: Maik
+     * @Description: Valida se o caso em que a propriedade não existe no banco de dados, então espera-se o retorno como
+     * bad request;
+     * Refere-se ao requisito US-0004
      * @throws Exception
      */
     @Test
