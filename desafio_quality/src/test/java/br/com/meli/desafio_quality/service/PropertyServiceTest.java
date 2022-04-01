@@ -196,5 +196,18 @@ public class PropertyServiceTest {
 
     }
 
+    /**
+     * @Descritption: Verificar se a funcao de Bairro existe retorna uma exceção ao ser alimentada com um id invalido
+     */
+    @Test
+    @DisplayName("Test05 - US-0002")
+    public void bairroExiste_shouldReturnValorTrowNewError_whenByPropertyId() {
+
+        Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
+        assertThrows(ResponseStatusException.class, () -> propertyService.bairroExiste(2));
+
+
+    }
+
 
 }
