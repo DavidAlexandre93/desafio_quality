@@ -7,6 +7,7 @@ import br.com.meli.desafio_quality.entity.RoomEntity;
 import br.com.meli.desafio_quality.service.PropertyService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -29,7 +30,7 @@ public class Controller {
     @PostMapping("/new")
     public ResponseEntity<PropertyEntity> createProperty(@Valid @RequestBody PropertyDTO input) {
         PropertyEntity property = propertyService.addProperty(input);
-        return ResponseEntity.ok(property);
+        return ResponseEntity.status(HttpStatus.CREATED).body(property);
     }
 
     /**
