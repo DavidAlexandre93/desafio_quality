@@ -13,6 +13,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>desafio_quality</name>
 	<description>Desafio quality - bootcamp-meli</description>
+
+
 	<properties>
 		<java.version>1.8</java.version>
 
@@ -74,6 +76,7 @@
 					</execution>
 					<execution>
 						<id>report</id>
+
 						<goals>
 							<goal>report</goal>
 						</goals>
@@ -87,6 +90,7 @@
 								<exclude>br/com/meli/desafio_quality/DesafioQualityApplication.class</exclude>
 							</excludes>
 						</configuration>
+
 					</execution>
 				</executions>
 			</plugin>
