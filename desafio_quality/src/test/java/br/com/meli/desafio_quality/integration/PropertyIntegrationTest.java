@@ -149,6 +149,10 @@ public class PropertyIntegrationTest {
         assertEquals(responseString, "215.0");
     }
 
+    /**
+     *
+     * @throws Exception
+     */
     @Test
     public void checkIfEndpointReturnsErrorWhenReceiveingWringInput() throws Exception{
         insertProperty();

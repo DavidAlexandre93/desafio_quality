@@ -25,8 +25,5 @@ public class PropertyEntity {
         this.propName = propName;
         this.district = district;
         this.rooms = rooms;
-
-       // idAcc += 1;
-        //this.id = idAcc;
     }
 }
