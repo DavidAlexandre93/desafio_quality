@@ -1,4 +1,4 @@
-package br.com.meli.desafio_quality.service;
+package br.com.meli.desafio_quality.unit.service;
 
 
 import br.com.meli.desafio_quality.entity.DistrictEntity;
@@ -103,7 +103,9 @@ public class PropertyServiceTest {
     }
 
     /**
-     *
+     * @Author Maik
+     * @Description Valida se o cálculo é efetuado de forma correta para os cômodos da propriedade;
+     * Refere-se ao requisito US-0004
      */
     @Test
     @DisplayName("Test01 - US-0004")
@@ -120,7 +122,9 @@ public class PropertyServiceTest {
     }
 
     /**
-     *
+     * @Author Maik
+     * @Description Valida o comportamento quando uma exceção é lançada pelo repositório;
+     * Refere-se ao requisito US-0004
      */
     @Test
     @DisplayName("Test02 - US-0004")

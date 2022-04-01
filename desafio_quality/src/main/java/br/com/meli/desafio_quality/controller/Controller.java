@@ -4,9 +4,10 @@ import br.com.meli.desafio_quality.dto.PropertyDTO;
 import br.com.meli.desafio_quality.dto.PropertyRoomsResponseDTO;
 import br.com.meli.desafio_quality.entity.PropertyEntity;
 import br.com.meli.desafio_quality.entity.RoomEntity;
-import br.com.meli.desafio_quality.service.PropertyService;
+import br.com.meli.desafio_quality.unit.service.PropertyService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -29,7 +30,7 @@ public class Controller {
     @PostMapping("/new")
     public ResponseEntity<PropertyEntity> createProperty(@Valid @RequestBody PropertyDTO input) {
         PropertyEntity property = propertyService.addProperty(input);
-        return ResponseEntity.ok(property);
+        return ResponseEntity.status(HttpStatus.CREATED).body(property);
     }
 
     /**
@@ -66,7 +67,8 @@ public class Controller {
     }
 
     /**
-     * Busca um imóvel a partir do id fornecido e caso exista retorna a lista de seus cômodos com as respectivas áreas
+     * @Author Maik
+     * @Description Busca um imóvel a partir do id fornecido e caso exista retorna a lista de seus cômodos com as respectivas áreas
      * calculadas, caso o imóvel não seja encontrado na base de dados resume-se em um retorno com status bad request.
      *
      * @param   id  id do imóvel
