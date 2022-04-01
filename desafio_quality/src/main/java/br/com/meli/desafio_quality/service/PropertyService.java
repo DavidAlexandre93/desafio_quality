@@ -67,12 +67,13 @@ public class PropertyService {
      * @return
      */
     public boolean bairroExiste(Integer id) {
-        try {
+
+        if(propertyRepository.findById(id) != null){
             propertyRepository.findById(id).getDistrict().getPropDistrict();
             return true;
-        }catch (NullPointerException e){
-            return false;
         }
+
+        return false;
     }
 
     /**

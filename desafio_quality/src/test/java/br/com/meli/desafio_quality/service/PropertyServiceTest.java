@@ -7,8 +7,7 @@ import br.com.meli.desafio_quality.entity.RoomEntity;
 import br.com.meli.desafio_quality.repository.PropertyRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -139,17 +138,15 @@ public class PropertyServiceTest {
     public void totalValor_shouldTrowNewError_whenInvalidId() {
 
         Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
-
         assertThrows(ResponseStatusException.class, () -> propertyService.totalPropertyArea(2));
     }
 
     /**
-     * @Descritption: Verifique se o bairro de entrada existe no
-     * repositório de bairro
+     * @Descritption: Verifique se o bairro cadastrado existe
      */
     @Test
     @DisplayName("Test01 - US-0002")
-    public void bairroExiste_shouldTrowNewError_whenInvalidBairro() {
+    public void bairroExiste_shouldReturnTrue_whenValidBairro() {
 
         Mockito.when(propertyRepository.findById(1)).thenReturn(propertyHouse);
         assert(propertyService.bairroExiste(1));
@@ -197,15 +194,14 @@ public class PropertyServiceTest {
     }
 
     /**
-     * @Descritption: Verificar se a funcao de Bairro existe retorna uma exceção ao ser alimentada com um id invalido
+     * @Descritption: Verificar se a funcao de Bairro existe retorna false ao ser alimentada com um id invalido
      */
     @Test
     @DisplayName("Test05 - US-0002")
-    public void bairroExiste_shouldReturnValorTrowNewError_whenByPropertyId() {
+    public void bairroExiste_shouldReturnFalse_whenByInvalidPropertyId() {
 
-        Mockito.when(propertyRepository.findById(2)).thenThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Propriedade não encontrada"));
-        assertThrows(ResponseStatusException.class, () -> propertyService.bairroExiste(2));
-
+        Mockito.when(propertyRepository.findById(1)).thenReturn(propertyHouse);
+        assertFalse(propertyService.bairroExiste(2));
 
     }
 
