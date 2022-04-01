@@ -1,0 +1,118 @@
+{
+	"info": {
+		"_postman_id": "ba5d324e-753a-4169-b3f5-5fc7082088f2",
+		"name": "US001-002-003-004",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"propName\":\"Casa\",\n    \"district\": \n    {\n    \"propDistrict\":\"Em algum lugar\",\n    \"valueDistrictM2\": 4.55\n    },\n    \"rooms\": [\n    {\n    \"roomName\" : \"Banheiro\",\n    \"roomWidth\": 5.00,\n    \"roomLength\": 7.00\n    },\n    {\n    \"roomName\" :\"Quarto\",\n    \"roomWidth\": 15.00,\n    \"roomLength\": 12.00\n    }\n    ]\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Total Area",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/totalArea/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"totalArea",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Total Propriedade",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/totalpropriedade/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"totalpropriedade",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Maior Comodo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/biggestRoom/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"biggestRoom",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calcular Area do Comodo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/property/0/rooms-area",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"property",
+						"0",
+						"rooms-area"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
