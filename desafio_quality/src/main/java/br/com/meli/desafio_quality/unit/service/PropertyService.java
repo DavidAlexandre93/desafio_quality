@@ -1,4 +1,4 @@
-package br.com.meli.desafio_quality.service;
+package br.com.meli.desafio_quality.unit.service;
 
 import br.com.meli.desafio_quality.dto.PropertyDTO;
 import br.com.meli.desafio_quality.entity.DistrictEntity;
@@ -101,10 +101,12 @@ public class PropertyService {
 
         return room;
     }
-    /**  Dado o id de um imóvel, busca e calcula a área de cada um de seus cômodos.
+    /**
+     * @Author Maik
+     * @Description: Dado o id de um imóvel, busca e calcula a área de cada um de seus cômodos.
      *
      * @param  propertyId id do imóvel alvo da operação.
-     * @return Entidade do imóvel com cada um de seus cômodos com a área calculada.
+     * @return            Entidade do imóvel com cada um de seus cômodos com a área calculada.
      */
     public PropertyEntity calculateRoomsArea(Integer propertyId) {
         PropertyEntity property = propertyRepository.findById(propertyId);
@@ -113,10 +115,11 @@ public class PropertyService {
     }
 
     /**
-     * @Metodo: Dado um cômodo calcula sua área seguindo a fórmula largura x comprimento.
-     * @Description:
+     * @Author Maik
+     * @Description: Dado um cômodo calcula sua área seguindo a fórmula largura x comprimento.
+     *
      * @param  roomEntity Cômodo em que se deseja calcular a área.
-     * @return A área do cômodo recebido.
+     * @return            A área do cômodo recebido.
      */
     private double calculateRoomEntityArea(RoomEntity roomEntity) {
         return roomEntity.getRoomWidth() * roomEntity.getRoomLength();
