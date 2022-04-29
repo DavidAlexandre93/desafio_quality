@@ -1,0 +1,12 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "",
+    "version" : "1",
+    "title" : ""
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/projetointegrador2/Produto/1",
+  "schemes" : [ "https" ],
+  "paths" : { }
+}
